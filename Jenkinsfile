@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools{
-        maven 'Maven3.6.1'
+        maven 'Maven3'
     }
     stages{
         stage('Build Maven'){
@@ -10,23 +10,22 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t damujuri/devops-integration .'
-                }
-            }
-        }
-        stage('Push image to Hub'){
-            steps{
-                script{
-                   withCredentials([string(credentialsId: 'Sarojini9', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u damujuri -p ${dockerhubpwd}'
-
-}
-                   sh 'docker push damujuri/devops-integration'
-                }
-            }
-        }
+       // stage('Build docker image'){
+        //    steps{
+         //       script{
+          //          sh 'docker build -t damujuri/devops-integration .'
+           //     }
+           // }
+       // }
+       // stage('Push image to Hub'){
+         //   steps{
+           //     script{
+             //      withCredentials([string(credentialsId: 'Sarojini9', variable: 'dockerhubpwd')]) {
+               //    sh 'docker login -u damujuri -p ${dockerhubpwd}'
+                 //   }
+                //   sh 'docker push damujuri/devops-integration'
+               // }
+           // }
+       // }
     }
 }
