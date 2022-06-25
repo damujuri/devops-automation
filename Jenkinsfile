@@ -28,5 +28,13 @@ pipeline {
                }
             }
         }
+        stage('Push image to K8s'){
+            steps{
+                script{
+                    //kubernetesDeploy configs: 'deploymentservice.yaml', kubeConfig: [path: ''], kubeconfigId: 'k8configpwd', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+                    kubernetesDeploy (configs: 'deploymentservice.yaml', kubeconfigId: 'k8configpwd')
+                    }
+                }
+            }
     }
 }
