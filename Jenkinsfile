@@ -10,6 +10,17 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+
+        stage('SonarQube analysis') {
+        //def scannerHome = tool 'SonarScanner 4.0';
+            steps{
+                withSonarQubeEnv('SonarQubeScanner-4.7.0') {
+                // If you have configured more than one global server connection, you can specify its name
+                // sh "${scannerHome}/bin/sonar-scanner"
+                sh "mvn sonar:sonar"
+            }
+        }
+
         stage('Build docker image'){
             steps{
                 script{
