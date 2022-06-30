@@ -10,7 +10,7 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-
+        /*
         stage('SonarQube analysis') {
         //def scannerHome = tool 'SonarScanner 4.0';
             steps{
@@ -20,7 +20,7 @@ pipeline {
                     bat 'mvn sonar:sonar'
                 }
             }
-        }
+        }*/
 
         stage('Build docker image'){
             steps{
