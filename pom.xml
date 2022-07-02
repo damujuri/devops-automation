@@ -47,8 +47,9 @@
           <version>0.8.6</version>
         </plugin>
 		</plugins>
-		<finalName>devops-integration</finalName>
+		
 	 </pluginManagement>
+		<finalName>devops-integration</finalName>
 	</build>
 	
 	 <profiles>
