@@ -11,18 +11,13 @@ pipeline {
             }
         }
         
-          
-       stage('SonarQube analysis') {
-        //def scannerHome = tool 'SonarScanner 4.0';
-           steps{
-              withSonarQubeEnv('sonarqube') {
-                // If you have configured more than one global server connection, you can specify its name
-                // sh "${scannerHome}/bin/sonar-scanner"
-                   bat 'mvn sonar:sonar  -Dsonar.projectKey=devops-automation'
-                   //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+        stage('SonarQube analysis') {
+            steps{
+                withSonarQubeEnv('sonarqube') {
+                    bat 'mvn sonar:sonar  -Dsonar.projectKey=devops-automation'
                 }
-           }
-       }
+            }
+        }
 
         stage('Build docker image'){
             steps{
@@ -39,7 +34,7 @@ pipeline {
                     bat 'docker login -u damujuri -p Sarojini9'
                     //}
                     bat 'docker push damujuri/devops-integration'
-               }
+                }
             }
         }
         stage('Push image to K8s'){
