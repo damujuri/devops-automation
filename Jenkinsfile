@@ -17,8 +17,8 @@ pipeline {
                 withSonarQubeEnv('sonarqube') {
                 // If you have configured more than one global server connection, you can specify its name
                 // sh "${scannerHome}/bin/sonar-scanner"
-                    //bat 'mvn sonar:sonar'
-                    bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                    bat 'mvn sonar:sonar'
+                    //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
                 }
             }
         }
