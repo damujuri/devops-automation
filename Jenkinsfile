@@ -11,24 +11,18 @@ pipeline {
             }
         }
         
-        stage('SonarQube Analysis') {
-    def mvn = tool 'Default Maven';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=devops-automation"
-    }
-  }
-        
-     //   stage('SonarQube analysis') {
+          
+       stage('SonarQube analysis') {
         //def scannerHome = tool 'SonarScanner 4.0';
-        //    steps{
-         //       withSonarQubeEnv('sonarqube') {
+           steps{
+              withSonarQubeEnv('sonarqube') {
                 // If you have configured more than one global server connection, you can specify its name
                 // sh "${scannerHome}/bin/sonar-scanner"
-          //          bat 'mvn sonar:sonar'
-                    //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-     //           }
-     //       }
-     //   }
+                   bat 'mvn sonar:sonar  -Dsonar.projectKey=devops-automation'
+                   //bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                }
+           }
+       }
 
         stage('Build docker image'){
             steps{
